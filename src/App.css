@@ -1,38 +1,472 @@
-.App {
-  text-align: center;
+@import url('./Login.css');
+@import url('./Pagination.css');
+@import url('./Styles/Create.css');
+@import url('./Styles/Inputs.css');
+
+/* NAV */
+
+.App-header{
+    display: flex;
+    flex-direction: column;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+nav{
+    background-color: #aaa7a0;
+    margin: 0 10px;
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+    display: flex;
+    justify-content: space-between;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.nav-control a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    margin: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.nav-link.active{
+    color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* CARD */
+
+.card-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card-item{
+    background-color: white;
+    width: 270px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.card-image-container{
+    background-color: dimgrey;
+    height: 250px;
+    width: 250px;
+}
+
+.card-image-container img{
+    object-fit: contain;
+    width: 100%;
+    height: 250px;
+}
+
+.card-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-price{
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.card-btn{
+    margin-top: 20px;
+}
+
+/* LIST */
+
+.list-group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.list-title-home{
+    text-align: center;
+}
+
+.new-clothing-container,
+.list{
+    margin: 10px;
+    background-color: #dcdad6;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 2px 2px 5px #000000a9;
+}
+
+.new-clothing-container-inputs{
+    display: flex;
+    align-items: center;
+}
+
+
+
+/* FILTER */
+
+.filter{
+    background-color: #c8c5c5;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 5px;
+    line-height: 50px;
+}
+
+.filter-search{
+    width: 100%;
+    text-align: center;
+}
+
+.filter .search-input{
+    width: 80%;
+}
+
+.filter-inputs{
+    display: flex;
+    justify-content: center;
+    column-gap: 50px;
+    align-items: center;
+}
+
+.filter-input-container .input-select{
+    width: 80px;
+}
+
+/* ADMIN LIST ITEM */
+
+.list-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.list-item{
+    display: flex;
+    align-items: center;
+}
+
+.list-item-clothes{
+    background-color: #c8c5c5;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.list-title{
+    background-color: white;
+    padding: 5px 20px;
+    border-radius: 50px;
+    display: inline-block;
+    box-shadow: 1px 1px 5px #000000a9;
+    margin-right: 10px;
+}
+
+.list-item span{
+    margin: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px 20px;
+    background-color: white;
+    border-radius: 50px;
+    box-shadow: 1px 1px 2px #000000a9;
+    width: 80px;
+    text-align: center;
+}
+
+.list-header>.list-header-image{
+    width: 200px;
+}
+
+.list-item img{
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.list-header-container{
+    display: flex;
+}
+
+.list-color-container{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: white;
+    border-radius: 50px;
+    height: 30px;
+    align-items: center;
+    box-shadow: 1px 1px 2px #000000a9;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 10px;
+    width: 100px;
+}
+
+.list-color-display{
+    width: 15px;
+    height: 15px;
+    border-radius: 50px;
+}
+
+.list-color-container span{
+    padding: 0;
+    height: initial;
+    box-shadow: none;
+    width: 70px;
+}
+
+.list-item-clothes .create-btn-top{
+    display: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.create-btn-top{
+    filter: invert(16%) sepia(100%) saturate(5930%) hue-rotate(357deg) brightness(92%) contrast(120%);
+}
+
+/*MODAL ORDER*/
+
+.order{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.587);
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.order-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 800px;
+    height: 80vh;
+    background-color: bisque;
+    box-shadow: 1px 1px 5px #000000a9;
+    border-radius: 5px;
+    margin: 20px calc((100% - 800px)/2);
+    padding: 10px;
+    position: relative;
+}
+
+.delete-container{
+    width: 280px;
+    margin: 200px calc((100% - 280px)/2);
+    height: 100px;
+}
+
+.order-container .input-select{
+    width: 100px;
+}
+
+.order-info-title{
+    margin: 0;
+}
+
+.order-btn-container{
+    margin: 10px;
+    align-self: center;
+}
+
+.order-btn-container .btn{
+    margin: 10px;
+}
+
+.input-textarea{
+    display: block;
+    min-height: 100px;
+    margin-top: 10px;
+}
+
+.btn-delete{
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.textarea-container textarea{
+    width: 99%;
+    resize: none;
+}
+
+/*MyOrder*/
+
+.myOrder-list{
+    height: 630px;
+}
+
+.myOrder-size{
+    text-transform: uppercase;
+}
+
+.myOrder-status{
+    width: 120px;
+    margin: 10px;
+    text-align: center;
+}
+
+.list-item .myOrder-comment,
+.list-header.list-header-comment{
+    overflow-wrap: break-word;
+    width: 160px;
+    min-height: 20px;
+}
+
+.order-control{
+    display: flex;
+    flex-direction: row;
+}
+
+.btn-order{
+    margin: 5px;
+}
+
+.myOrder-header-type-second{
+    display: none;
+}
+
+/* STATS */
+
+.stats-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+@media (max-width: 1250px){
+    .list-item span{
+        font-size: 12px;
+        margin: 2px;
+       
+    }
+    
+    .list-item .input-select,
+    .list-item .btn{
+        font-size: 12px;
+    }
+
+    .list-item .btn{
+        min-width: 20px;
+    }
+
+    .list-item .list-item-id,
+    .list-item .list-item-size{
+        width: 10px;
+    }
+    
+    /* Create */
+
+    .image-control .file-input{
+        width: 89px;
+    }
+
+    .new-clothing-container .btn{
+        font-size: 12px;
+    }
+
+    .list-item img{
+        width: 80px;
+    }
+
+    .list-item-clothes .btn{
+        display: none;
+    }
+
+    .list-item-clothes .create-btn-top{
+        display: block;
+    }
+}
+
+@media (max-width: 1200px){
+    .card-container{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 970px){
+    .card-container{
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+    }
+
+    .list-header.myOrder-header-status{
+        width: 50px;
+    }
+
+    .list-item .input-select{
+        width: 70px;
+    }
+}
+
+@media (max-width: 950px){
+    .list-item .myOrder-color-container{
+        font-size: 12px;
+        margin: 2px;
+        width: 14px;
+    }
+
+    .list-item .color-container-second{
+        display: flex;
+        width: 55px;
+        justify-content: center;
+    }
+
+    .list-header.myOrder-header-color{
+        width: 10px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .list-item .myOrder-color-container span{
+        display: none;
+    }
+
+    .list-header.myOrder-header-type{
+        display: none;
+    }
+
+    .list-header.myOrder-header-type-second{
+        display: block;
+        width: 30px;
+    }
+
+    .list-item .myOrder-type{
+        width: 30px;
+    }
+}
+
+@media (max-width: 650px){
+    .card-container{
+        grid-template-columns: 1fr;
+        
+    }
+
+    .list-item .color-container-second{
+        display: none;
+    }
+
+    .list-item .myOrder-color-container{
+        font-size: 12px;
+        margin: 2px;
+        width: 14px;
+    }
+
+    .myOrder-comment,
+    .list-item .myOrder-color-container,
+    .list-item .myOrder-size,
+    .list-item .myOrder-header-size,
+    .list-header.list-header-comment,
+    .list-header.myOrder-header-color{
+        display: none;
+    }
 }
