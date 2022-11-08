@@ -4,7 +4,7 @@ import ShowNav from "../ShowNav";
 import List from "./Containers";
 import { isNumber, checkLength } from "../../Functions/doValid.js";
 import delImg from '../../assets/img/x.svg';
-import Delete from "../client/Delete";
+import Delete from "../admin/Delete";
 import Containers from "./Containers";
 import CargoContext from "../../Context/CargoContext";
 import sizes from '../../data/sizes.js';

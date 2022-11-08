@@ -44,7 +44,7 @@ function App() {
   const [modalDelete, setModalDelete] = useState(null);
   const [modalDeleteContainer, setModalDeleteContainer] = useState(null);
 
-  const [newOrder, setNewOrder] = useState(null);
+  const [newEdit, setNewEdit] = useState(null);
 
   const [refresh, setRefresh] = useState(Date.now());
   const [refreshStatus, setRefreshStatus] = useState(Date.now());
@@ -131,14 +131,14 @@ useEffect(()=>{
 //   .then(res => setRefresh(Date.now()));
 // }, [newOrder]);
 
-// //UPDATE
-// useEffect(()=>{
-//   if(updateOrder === null){
-//     return;
-//   }
-//   axios.put('http://localhost:3007/orders/' + updateOrder.id, updateOrder, authConfig())
-//   .then(res => setRefresh(Date.now()));
-// }, [updateOrder]);
+//UPDATE BOX
+useEffect(()=>{
+  if(newEdit === null){
+    return;
+  }
+  axios.put('http://localhost:3007/boxes/' + newEdit.id, newEdit, authConfig())
+  .then(res => setRefresh(Date.now()));
+}, [newEdit]);
 
 //DELETE
 useEffect(() => {
@@ -147,6 +147,7 @@ useEffect(() => {
   }
   axios.delete('http://localhost:3007/boxes/'+ deleteData.id, authConfig())
   .then(res => setRefresh(Date.now()));
+  console.log(deleteData.id);
 }, [deleteData]);
 
 //DELETE CONTAINER
@@ -183,7 +184,7 @@ useEffect(() => {
       modalEdit,
       modalDelete,
       modalDeleteContainer,
-      setNewOrder,
+      setNewEdit,
       setDeleteOrder,
       refreshStatus,
       status,
@@ -204,9 +205,9 @@ useEffect(() => {
             <Route path='/' element={<LoginPage setRefreshStatus={setRefreshStatus} />}> </Route>
             <Route path='/login' element={<LoginPage setRefreshStatus={setRefreshStatus} />}> </Route>
             <Route path='/logout' element={<LogoutPage setRefreshStatus={setRefreshStatus} />}> </Route>
-            <Route path='/home' element={<Create />}></Route>
-            <Route path='/home/boxes' element={<Create />}></Route>
-            <Route path='/home/containers' element={<CreateContainer />}></Route>
+            <Route path='/home' element={<RequireAuth role='client'><Home /></RequireAuth>}></Route>
+            <Route path='/home/boxes' element={<RequireAuth role='admin'><Create /></RequireAuth>}></Route>
+            <Route path='/home/containers' element={<RequireAuth role='admin'><CreateContainer /></RequireAuth>}></Route>
           </Routes>
         </header>
       </div>

@@ -1,31 +1,18 @@
 import { useContext } from "react";
-import ClotheContext from "../../Context/CargoContext";
-import noImage from '../../assets/img/no-image.svg'
+import noImage from '../../assets/img/no-image.svg';
+import containerImg from '../../assets/img/container.svg';
+import CargoContext from "../../Context/CargoContext";
+import sizes from '../../data/sizes.js';
 
-function ListItem({ clothing }){
+function ListItem({ container }){
 
-    const { setModalOrder } = useContext(ClotheContext);
-
+    const { setModalOrder, boxes } = useContext(CargoContext);
+    
     return(
-        <div className="col-lg-4 col-md-5 col-sm-12 justify-content-center">
-            <div className="card-item card text-center justify-content-center">
-                <div className="card-image-container card-img-top">
-                    {clothing.image ?
-                    <img src={clothing.image} alt={clothing.type}></img> :
-                    <img src={noImage} alt='no imeg'></img>}
-                </div>
-                <div className="list-group">
-                    <div className="list-color-container card-title list-group-item align-self-center">
-                        <span>{clothing.color}</span>
-                        <div className="list-color-display" style={{backgroundColor: clothing.color}}></div>
-                    </div>
-                    <div className="card-text list-group-item">
-                        <span>{clothing.type}</span>
-                        <span className="card-price">{clothing.price}&euro;</span>
-                    </div>
-                    <button className="btn card-btn list-group-item" onClick={() => setModalOrder(clothing)}>Select</button>
-                </div>
-            </div>
+        <div className={ (boxes?.filter(b => b.container_id === container.id).length !== sizes[container.sizeType]) ? 'list-item list-item-home' : 'list-item list-item-home-full'}>
+            <img src={containerImg} alt='container'></img>
+            <span>{container.id}</span>
+            <span>{boxes?.filter(b => b.container_id === container.id).length}/{sizes[container.sizeType]}</span>
         </div>
     );
 }

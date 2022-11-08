@@ -3,10 +3,13 @@ import del from '../../assets/img/x.svg';
 import conImg from '../../assets/img/container.svg';
 import { useContext } from 'react';
 import CargoContext from '../../Context/CargoContext';
+import { useState } from 'react';
 
 function Container({ container }){
     
-    const { setModalDeleteContainer } = useContext(CargoContext);
+    const { setModalDeleteContainer, boxes, setDeleteData } = useContext(CargoContext);
+
+    const [box, setBox] = useState('');
 
     return(
         <div className="list-item">
@@ -15,7 +18,12 @@ function Container({ container }){
             <span>{container.sizeType}</span>
             <span>{container.size}</span>
             <button className='btn' onClick={() => setModalDeleteContainer(container)}>Delete container</button>
-            <button className='btn'>Delete box</button>
+            <div className='list-select-input'>
+            <select className='input-select' value={box} onChange={e => setBox(e.target.value)}>
+                {boxes?.map(b => b.container_id === container.id? <option key={b.id} value={b.id}>{b.title}</option> : null)}
+            </select>
+            <button className='btn' onClick={() => setDeleteData({id: box})}>Delete box</button>
+            </div>
         </div>
     );
 }
