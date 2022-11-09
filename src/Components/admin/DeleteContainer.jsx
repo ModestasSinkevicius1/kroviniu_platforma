@@ -17,7 +17,7 @@ function DeleteContainer(){
     }
 
     return(
-        <div className="deleteContainer">
+        <div className="deleteContainer delete">
             <div className="delete-container">
                 <img src={close} alt='Exit' className="btn-delete" onClick={() => setModalDeleteContainer(null)}></img>
                 <div className="delete-info-container">

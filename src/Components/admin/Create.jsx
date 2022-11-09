@@ -1,7 +1,6 @@
 import { useContext, useRef, useState } from "react";
 import getBase64 from "../../Functions/getBase64";
 import ShowNav from "../ShowNav";
-import List from "./Containers";
 import { isNumber, checkLength } from "../../Functions/doValid.js";
 import delImg from '../../assets/img/x.svg';
 import Delete from "../admin/Delete";

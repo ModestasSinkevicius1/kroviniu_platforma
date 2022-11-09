@@ -53,8 +53,8 @@ function Edit(){
     }
 
     return(
-        <div className="order">
-            <div className="order-container">
+        <div className="edit">
+            <div className="edit-container">
                 <img src={close} alt='Exit' className="btn-delete" onClick={() => setModalEdit(null)}></img>
                 <div>
                     <label htmlFor="_size">Weight</label>

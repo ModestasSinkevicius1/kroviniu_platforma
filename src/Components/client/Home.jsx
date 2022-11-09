@@ -1,6 +1,6 @@
 import ShowNav from "../ShowNav";
 import List from "./List";
-import Order from "./Order";
+import Order from "./ModalBox";
 
 function Home(){
     return(
@@ -8,7 +8,7 @@ function Home(){
             <ShowNav />
             <div className="home">
                 <List />
-                {/* <Order /> */}
+                <Order />
             </div>
         </>
     );

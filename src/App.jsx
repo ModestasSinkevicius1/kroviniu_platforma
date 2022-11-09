@@ -40,6 +40,7 @@ function App() {
   const [deleteData, setDeleteData] = useState(null);
   const [deleteContainer, setDeleteContainer] = useState(null);
 
+  const [modalBox, setModalBox] = useState(null);
   const [modalEdit, setModalEdit] = useState(null);
   const [modalDelete, setModalDelete] = useState(null);
   const [modalDeleteContainer, setModalDeleteContainer] = useState(null);
@@ -178,9 +179,11 @@ useEffect(() => {
       setSaveBox,
       setDeleteData,
       setDeleteContainer,
+      setModalBox,
       setModalEdit,
       setModalDelete,
       setModalDeleteContainer,
+      modalBox,
       modalEdit,
       modalDelete,
       modalDeleteContainer,

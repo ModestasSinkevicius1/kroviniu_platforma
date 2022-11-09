@@ -1,9 +1,11 @@
 .list-item-home-full{
     background-color: rgb(252, 95, 95);
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .list-item-home{
     background-color: #aba4a4;
     border-radius: 5px;
+    cursor: pointer;
 }

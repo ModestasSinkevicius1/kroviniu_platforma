@@ -1,5 +1,5 @@
 .list-select-input{
-    background-color: rgb(187, 179, 179);
+    background-color: #bbb3b3;
     border-radius: 5px;
     padding: 10px;
 }
@@ -16,4 +16,17 @@
 
 .list-not-found-img{
     width: 300px;
+}
+
+.list-item-modal{
+    background-color: #c7b4b4;
+    box-shadow: 2px 2px 5px #000000a9;
+}
+
+.list-item-modal .img-modal{
+    width: 100px;
+}
+
+.list-container-modal{
+    overflow-y: scroll;
 }

@@ -6,13 +6,14 @@ import sizes from '../../data/sizes.js';
 
 function ListItem({ container }){
 
-    const { setModalOrder, boxes } = useContext(CargoContext);
+    const { setModalBox, boxes } = useContext(CargoContext);
+    const boxesCount = boxes?.filter(b => b.container_id === container.id).length;
     
     return(
-        <div className={ (boxes?.filter(b => b.container_id === container.id).length !== sizes[container.sizeType]) ? 'list-item list-item-home' : 'list-item list-item-home-full'}>
+        <div onClick={() => setModalBox(container)} className={ (boxesCount !== sizes[container.sizeType]) ? 'list-item list-item-home' : 'list-item list-item-home-full'}>
             <img src={containerImg} alt='container'></img>
             <span>{container.id}</span>
-            <span>{boxes?.filter(b => b.container_id === container.id).length}/{sizes[container.sizeType]}</span>
+            <span>{boxesCount}/{sizes[container.sizeType]}</span>
         </div>
     );
 }
