@@ -14,7 +14,6 @@ function Delete(){
         setDeleteData(modalDelete);
         setModalDelete(null);
     }
-    console.log('yes');
 
     return(
         <div className="delete">

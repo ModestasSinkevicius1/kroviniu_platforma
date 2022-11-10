@@ -18,7 +18,7 @@ function Create(){
 
     const [container, setContainer] = useState('none');
 
-    const { containers, setSaveBox } = useContext(CargoContext);
+    const { freeContainers, setSaveBox } = useContext(CargoContext);
 
     const fileInput = useRef();
 
@@ -95,7 +95,7 @@ function Create(){
                             <label>Container</label>
                             <select className="input-select" value={container} onChange={e => setContainer(e.target.value)}>
                                 <option value={'none'}>Choose</option>
-                                {containers?.map(c => <option key={c.id} value={c.id}> {c.id} - {c.sizeType}</option>)}
+                                {freeContainers?.map(c => <option key={c.id} value={c.id}> {c.id} - {c.sizeType}</option>)}
                             </select>
                         </div>
                         <div className="create-box-inputs">

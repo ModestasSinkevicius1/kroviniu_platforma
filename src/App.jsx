@@ -30,6 +30,7 @@ function App() {
   const [clothes, setClothes] = useState(null);
 
   const [containers, setContainers] = useState(null);
+  const [freeContainers, setFreeContainers] = useState(null);
   const [boxes, setBoxes] = useState(null);
   
   const [stats, setStats] = useState(null);
@@ -83,6 +84,19 @@ function App() {
     .catch(_ => setBoxes('error'));
   }, [refresh, status]);
 
+  // GET FREE CONTAINERS
+  useEffect(()=>{
+    if(status === 1){
+        return;
+    }
+    axios.get('http://localhost:3007/containers/free', authConfig())
+    .then(res => {
+      setFreeContainers(res.data.map((d, i) => ({...d, show: true, row: i})))
+    })
+    .catch(_ => setFreeContainers('error'));
+  }, [refresh, status]);
+
+
 //   useEffect(()=>{
 //     if(status === 1){
 //       return;
@@ -121,6 +135,9 @@ useEffect(()=>{
   }
   axios.post('http://localhost:3007/boxes', saveBox, authConfig())
   .then(res => setRefresh(Date.now()));
+
+  axios.put('http://localhost:3007/containers/sum/' + saveBox.container_id, saveBox, authConfig())
+  .then(res => setRefresh(Date.now()));
 }, [saveBox]);
 
 // //CREATE ORDER
@@ -139,6 +156,12 @@ useEffect(()=>{
   }
   axios.put('http://localhost:3007/boxes/' + newEdit.id, newEdit, authConfig())
   .then(res => setRefresh(Date.now()));
+
+  axios.put('http://localhost:3007/containers/sum/' + newEdit.container_id, newEdit, authConfig())
+  .then(res => setRefresh(Date.now()));
+
+  axios.put('http://localhost:3007/containers/sub/' + newEdit.old_container_id, newEdit, authConfig())
+  .then(res => setRefresh(Date.now()));
 }, [newEdit]);
 
 //DELETE
@@ -148,7 +171,9 @@ useEffect(() => {
   }
   axios.delete('http://localhost:3007/boxes/'+ deleteData.id, authConfig())
   .then(res => setRefresh(Date.now()));
-  console.log(deleteData.id);
+  console.log(deleteData);
+  axios.put('http://localhost:3007/containers/sub/' + deleteData.container_id, deleteData, authConfig())
+  .then(res => setRefresh(Date.now()));
 }, [deleteData]);
 
 //DELETE CONTAINER
@@ -173,6 +198,7 @@ useEffect(() => {
     <ClotheContext.Provider value={{
       clothes,
       containers,
+      freeContainers,
       boxes,
       setClothes,
       setSaveContainer,

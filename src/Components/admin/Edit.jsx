@@ -8,7 +8,7 @@ import { useEffect } from "react";
 
 function Edit(){
 
-    const { setModalEdit, modalEdit, setNewEdit, containers } = useContext(CargoContext);
+    const { setModalEdit, modalEdit, setNewEdit, freeContainers } = useContext(CargoContext);
 
     const [weight, setWeight] = useState('');
     const [title, setTitle] = useState('');
@@ -42,6 +42,7 @@ function Edit(){
             degradable,
             container_id: container,
             id: modalEdit.id,
+            old_container_id: modalEdit.container_id,
         });
         setModalEdit(null);
     }
@@ -86,12 +87,12 @@ function Edit(){
                 </div>
                 <div>
                     <select className='input-select' value={container} onChange={e => setContainer(e.target.value)}>
-                        {containers?.map(c => <option key={c.id} value={c.id}>{c.id} - {c.sizeType}</option>)} 
+                        {freeContainers?.map(c => <option key={c.id} value={c.id}>{c.id} - {c.sizeType}</option>)} 
                     </select>
                 </div>
                 <div className="order-btn-container">
-                    <button className="btn bg-light" onClick={() => setModalEdit(null)}>Cancel</button>
-                    <button className="btn bg-light" onClick={createOrder}>Buy</button>
+                    <button className="btn" onClick={() => setModalEdit(null)}>Cancel</button>
+                    <button className="btn" onClick={createOrder}>Apply</button>
                 </div>
             </div>
         </div>

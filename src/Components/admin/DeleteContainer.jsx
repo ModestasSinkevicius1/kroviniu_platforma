@@ -13,7 +13,6 @@ function DeleteContainer(){
     const deleteRecord = () =>{
         setDeleteContainer(modalDeleteContainer);
         setModalDeleteContainer(null);
-        console.log(modalDeleteContainer);
     }
 
     return(

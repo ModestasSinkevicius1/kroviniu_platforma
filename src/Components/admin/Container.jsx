@@ -4,6 +4,7 @@ import conImg from '../../assets/img/container.svg';
 import { useContext } from 'react';
 import CargoContext from '../../Context/CargoContext';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 function Container({ container }){
     
@@ -11,6 +12,10 @@ function Container({ container }){
 
     const [box, setBox] = useState('');
 
+    useEffect(() => {
+        setBox(boxes?.find(b => b.container_id === container.id)?.id);
+    }, [boxes, container])
+    
     return(
         <div className="list-item">
             <img src={conImg} alt='container'></img>
@@ -22,7 +27,7 @@ function Container({ container }){
             <select className='input-select' value={box} onChange={e => setBox(e.target.value)}>
                 {boxes?.map(b => b.container_id === container.id? <option key={b.id} value={b.id}>{b.title}</option> : null)}
             </select>
-            <button className='btn' onClick={() => setDeleteData({id: box})}>Delete box</button>
+            <button className='btn' onClick={() => setDeleteData({id: box, container_id: container.id})}>Delete box</button>
             </div>
         </div>
     );
